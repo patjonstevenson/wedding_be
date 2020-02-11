@@ -1,13 +1,14 @@
 const db = require('./dbConfig');
 
-module.export = {
+module.exports = {
     findBy,
     update
 }
 
 async function findBy(filter) {
     try {
-        const guest = await db("guests").select("*").where(filter);
+        const guest = await db("guests").select("*").where(filter).first();
+        console.log('Guest: ', guest);
         return db("guests").select("*").where({ group: guest.group });
     } catch (error) {
         return error;

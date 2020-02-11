@@ -13,8 +13,9 @@ router.get('/', async (req, res) => {
         if (!info) {
             res.status(404).json({ message: "Guest not found.", info });
         }
-        res.status(200).json({ info });
+        res.status(200).json({ guests: info });
     } catch (error) {
+        console.log(`\nError fetching guest info:\n${error}\n`);
         res.status(500).json({ message: "Internal server error", error });
     }
 })
